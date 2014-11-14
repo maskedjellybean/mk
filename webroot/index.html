@@ -1,0 +1,115 @@
+<html ng-app="portfolio">
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/megan.css" />
+    <title>MK</title>
+  </head>
+
+  <body>
+    <!-- header -->
+    <div id="header-expand">
+    <div id ="header">
+    <!-- <div id="logo"><img src="images/mk-logo-white.png" title="Megan Koschak, Graphic Designer, Seattle, Portland" alt="Megan Koschak, Graphic Designer, Seattle, Portland" /></div>
+    <div id="header-info"> -->
+    <!--<h1 id="site-name">megan | koschak</h1>-->
+<!--     <div id="name"><h1><span class="first-name">Megan</span><span class="last-name">Koschak</span></h1></div>
+    <ul id="header-links"><li id="phone">715.650.0300</li><li id="email"><a href="mailto:megankoschak@gmail.com">megankoschak@gmail.com</a></li><li id="resume"><a href="Megan-Koschak-Resume.pdf" target="_blank" title="View/Download My Resume">resume pdf</a></li></ul>
+    </div> -->
+    </div>
+    </div>
+
+    <div id="page" ng-controller="PortfolioController as portfolio">
+
+      <!-- left piece -->
+      <div class="container left" ng-repeat="row in rows">
+        <div class="flip-card" ng-click="portfolio.classToggle(this); this.toggles.transform = true" ng-class="this.classToggleVal ? 'transform back-active no-flip-help' : ''" ng-mouseenter="this.helpToggle = true" ng-mouseleave="this.helpToggle = false">
+
+          <div class="front face">
+            <primary-image repeatIndex="$index"></primary-image>
+            <img class="portfolio" src="{{row.neighbor_images.left}}"/>
+            <img class="portfolio" src="{{row.neighbor_images.center}}"/>
+            <img class="portfolio" src="{{row.neighbor_images.right}}"/>
+          </div>
+
+          <div class="back face center">
+            <div class="description">
+              <h3 class="multiple-line"> {{row.date}} </h3>
+              <h3 class="multiple-line"> {{row.company}} </h3>
+              <h3> {{row.programs}} </h3>
+              <div class="description-text">
+                <p> {{row.description}} </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="more-images"><div class="more-icon"></div><span class="more-text">more from this piece</span></div>
+        <div class="less-images"><div class="less-icon"></div><span class="less-text">close piece</span></div>
+        <div class="flip-help" ng-class="!this.helpToggle ? 'hide' : ''"><img src="images/info.png" /></div>
+      </div>
+
+      <!-- center piece -->
+      <div class="container center" ng-repeat="row in rows">
+        <div class="flip-card" ng-click="portfolio.classToggle(this); this.toggles.transform = true" ng-class="this.classToggleVal ? 'transform back-active no-flip-help' : ''" ng-mouseenter="this.helpToggle = true" ng-mouseleave="this.helpToggle = false">
+
+          <div class="front face">
+            <img class="portfolio" src="{{row.1.primary_image}}"/>
+            <img class="portfolio" src="{{row.neighbor_images.left}}"/>
+            <img class="portfolio" src="{{row.neighbor_images.center}}"/>
+            <img class="portfolio" src="{{row.neighbor_images.right}}"/>
+          </div>
+
+          <div class="back face center">
+            <div class="description">
+              <h3 class="multiple-line"> {{row.date}} </h3>
+              <h3 class="multiple-line"> {{row.company}} </h3>
+              <h3> {{row.programs}} </h3>
+              <div class="description-text">
+                <p> {{row.description}} </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="more-images"><div class="more-icon"></div><span class="more-text">more from this piece</span></div>
+        <div class="less-images"><div class="less-icon"></div><span class="less-text">close piece</span></div>
+        <div class="flip-help" ng-class="!this.helpToggle ? 'hide' : ''"><img src="images/info.png" /></div>
+      </div>
+
+      <!-- right piece -->
+
+      <div class="container right" ng-repeat="row in rows">
+        <div class="flip-card" ng-click="portfolio.classToggle(this); this.toggles.transform = true" ng-class="this.classToggleVal ? 'transform back-active no-flip-help' : ''" ng-mouseenter="this.helpToggle = true" ng-mouseleave="this.helpToggle = false">
+
+          <div class="front face">
+            <img class="portfolio" src="{{row.2.primary_image}}"/>
+            <img class="portfolio" src="{{row.neighbor_images.left}}"/>
+            <img class="portfolio" src="{{row.neighbor_images.center}}"/>
+            <img class="portfolio" src="{{row.neighbor_images.right}}"/>
+          </div>
+
+          <div class="back face center">
+            <div class="description">
+              <h3 class="multiple-line"> {{row.date}} </h3>
+              <h3 class="multiple-line"> {{row.company}} </h3>
+              <h3> {{row.programs}} </h3>
+              <div class="description-text">
+                <p> {{row.2.description}} </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="more-images"><div class="more-icon"></div><span class="more-text">more from this piece</span></div>
+        <div class="less-images"><div class="less-icon"></div><span class="less-text">close piece</span></div>
+        <div class="flip-help" ng-class="!this.helpToggle ? 'hide' : ''"><img src="images/info.png" /></div>
+      </div>
+
+    <!-- /page -->
+    </div>
+
+    <script type="text/javascript" src="libraries/angular.min.js"></script>
+    <script type="text/javascript" src="js/modules-bootstrap.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/factories.js"></script>
+  </body>
+</html>
