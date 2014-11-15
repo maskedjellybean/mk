@@ -16,39 +16,53 @@
 
     $scope.assignRows();
 
-    $scope.imageAssign = function() {
-
+    // This object controls the CSS class states for each 'piece'.
+    $scope.toggles = {
+      left: {
+        transform: false,
+        backActive: false,
+        noFlipHelp: false,
+        hidePrimaryImg: false,
+        hideDescription: false, // Determine whether to show or hide the text description
+        hideBackNbrImg1: true,
+        hideBackNbrImg2: true,
+        hideFrontNbrImg1: true,
+        hideFrontNbrImg2: true,
+      },
+      center: {
+        transform: false,
+        backActive: false,
+        noFlipHelp: false,
+        hidePrimaryImg: false,
+        hideDescription: false, // Determine whether to show or hide the text description
+        hideBackNbrImg1: true,
+        hideBackNbrImg2: true,
+        hideFrontNbrImg1: true,
+        hideFrontNbrImg2: true,
+      },
+      right: {
+        transform: false,
+        backActive: false,
+        noFlipHelp: false,
+        hidePrimaryImg: false,
+        hideDescription: false, // Determine whether to show or hide the text description
+        hideBackNbrImg1: true,
+        hideBackNbrImg2: true,
+        hideFrontNbrImg1: true,
+        hideFrontNbrImg2: true,
+      },
     };
-
-    this.toggles = {
-      transform: false,
-      backActive: false,
-      noFlipHelp: false,
-    };
-
-    // var flipHelp = false;
-    // this.flipHelp = flipHelp;
-
-    // console.log(this.toggles.flipHelp);
 
     // Method for toggling classes
-    this.classToggle = function(repeatScope, objectName, propertyName) {
-      console.log(this.flipHelp);
-      // var propName = propertyName;
-      // console.log('class toggle');
-      if (this.toggles[propertyName] === true) {
-        repeatScope.classToggleVal = false;
-        // console.log('class toggle false');
-        this.toggles[propertyName] = false;
-        console.log(this.toggles[propertyName]);
-        return false;
+    this.classToggle = function($scope, propertyName, piecePosition) {
+
+      var toggles = $scope.toggles;
+
+      if (toggles[piecePosition][propertyName] === true) {
+        toggles[piecePosition][propertyName] = false;
       }
       else {
-        repeatScope.classToggleVal = true;
-        // console.log('class toggle true');
-        this.toggles[propertyName] = true;
-        console.log(this.toggles[propertyName]);
-        return true;
+        toggles[piecePosition][propertyName] = true;
       }
     };
 
@@ -63,15 +77,22 @@
 
   }])
 
-  .directive('primaryImage', function() {
-    return {
-      restrict: 'E',
-      scope: {
-        repeatIndex: '='
-      },
-      template: '<div>{{repeatIndex}}</div>'
-      // template: '<img class="portfolio" src="{{row.' + repeatIndex + '.primary_image}}" />'
-    };
-  });
+  // .directive('imagePlacer', function(defaultImage, imagePosition, repeatIndex, replaceImage) {
+  //   // console.log($index);
+  //   return {
+  //     restrict: 'E',
+  //     scope: {
+  //       primaryImage: '='
+  //     },
+  //     // template: '<div>{{repeatIndex}}</div>'
+  //     // template: '<img class="portfolio" src="{{row.' + repeatIndex + '.primary_image}}" />'
+
+  //     if (imagePosition == 'left') {
+  //       if (replaceImage == false) {
+
+  //       }
+  //     }
+  //   };
+  // });
 
 })();

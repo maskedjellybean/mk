@@ -107,6 +107,10 @@ h1#site-name {
   margin: 0;
 }
 
+
+
+
+
 span.first-name {
   padding-right: 10px;
   margin-right: 10px;
@@ -198,6 +202,10 @@ ul#header-links li a:hover {
   box-sizing: border-box;
   color: #666;
 }
+
+/*.piece-image:not(.primary) {
+  display: none;
+}*/
 
 /*img.portfolio {
   box-shadow: 0 14px 30px -8px #777777;
