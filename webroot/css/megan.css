@@ -24,10 +24,6 @@ body {
   -webkit-text-size-adjust: none;
 }
 
-#preload {
-  display: none;
-}
-
 a {
   color: #0E7DAA;
   text-decoration: none;
@@ -204,10 +200,6 @@ ul#header-links li a:hover {
   color: #666;
 }
 
-/*.piece-image:not(.primary) {
-  display: none;
-}*/
-
 /*img.portfolio {
   box-shadow: 0 14px 30px -8px #777777;
   display: block;
@@ -274,13 +266,13 @@ ul#header-links li a:hover {
 .flip-help {
   top: 0;
   left: 0;
-    color: #999999;
-    float: right;
-    font-size: 0.8em;
-    position: absolute;
-    text-align: center;
-    width: 100%;
-    z-index: 50;
+  color: #999999;
+  float: right;
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index: 50;
   pointer-events: none;
   padding-bottom: 125.3%;
   background: url(../images/trans.png);
@@ -339,10 +331,13 @@ img.hide {
 
 .fade {
   opacity: .3;
+  pointer-events: none;
+  cursor: pointer;
 }
 
 .not-flippable {
   pointer-events: none;
+  cursor: pointer;
 }
 
 

@@ -8,10 +8,10 @@
     <!-- header -->
     <div id="header-expand">
     <div id ="header">
-    <!-- <div id="logo"><img src="images/mk-logo-white.png" title="Megan Koschak, Graphic Designer, Seattle, Portland" alt="Megan Koschak, Graphic Designer, Seattle, Portland" /></div>
-    <div id="header-info"> -->
-    <!--<h1 id="site-name">megan | koschak</h1>-->
-<!--     <div id="name"><h1><span class="first-name">Megan</span><span class="last-name">Koschak</span></h1></div>
+<!--     <div id="logo"><img src="images/mk-logo-white.png" title="Megan Koschak, Graphic Designer, Seattle, Portland" alt="Megan Koschak, Graphic Designer, Seattle, Portland" /></div>
+    <div id="header-info">
+    <h1 id="site-name">megan | koschak</h1>
+    <div id="name"><h1><span class="first-name">Megan</span><span class="last-name">Koschak</span></h1></div>
     <ul id="header-links"><li id="phone">715.650.0300</li><li id="email"><a href="mailto:megankoschak@gmail.com">megankoschak@gmail.com</a></li><li id="resume"><a href="Megan-Koschak-Resume.pdf" target="_blank" title="View/Download My Resume">resume pdf</a></li></ul>
     </div> -->
     </div>
@@ -25,7 +25,7 @@
         <!-- ng-mouseenter="this.helpToggle = true" ng-mouseleave="this.helpToggle = false" -->
 
         <div class="container left">
-          <div class="flip-card" ng-click="row.toggles.0.notFlippable || portfolio.classToggle(this, $index, 'transform', false, 0)" ng-class="{'transform':row.toggles.0.transform, 'back-active':row.toggles.0.backActive}">
+          <div class="flip-card" ng-click="row.toggles.0.notFlippable || portfolio.flipToggle(this, $index, false, 0)" ng-class="{'transform':row.toggles.0.transform, 'fade':row.toggles.0.fade, 'not-flippable':row.toggles.0.notFlippable}">
 
             <div class="front face">
               <img class="piece-image primary" ng-hide="row.toggles.0.hidePrimaryImg" src="{{row.0.primary_image}}"/>
@@ -47,7 +47,7 @@
             </div>
 
           </div>
-          <div class="more-images" ng-click="row.toggles.0.notFlippable || portfolio.classToggle(this, $index, 'transform', true, 0)"><div class="more-icon"></div><span class="more-text">more from this piece</span></div>
+          <div class="more-images" ng-click="portfolio.seeMore(this, $index, 0)" ng-class="{'fade':portfolio.show_more_active && row.toggles.0.notFlippable}"><div class="more-icon"></div><span class="more-text">more from this piece</span></div>
           <div class="less-images"><div class="less-icon"></div><span class="less-text">close piece</span></div>
           <!-- <div class="flip-help" ng-class="!this.helpToggle ? 'hide' : ''"><img src="images/info.png" /></div> -->
         </div>
@@ -55,7 +55,7 @@
         <!-- center piece -->
 
         <div class="container center">
-          <div class="flip-card" ng-click="row.toggles.1.notFlippable || portfolio.classToggle(this, $index, 'transform', false, 1)" ng-class="{'transform':row.toggles.1.transform, 'back-active':row.toggles.1.backActive}">
+          <div class="flip-card" ng-click="row.toggles.1.notFlippable || portfolio.flipToggle(this, $index, false, 1)" ng-class="{'transform':row.toggles.1.transform, 'fade':row.toggles.1.fade, 'not-flippable':row.toggles.1.notFlippable}">
 
             <div class="front face">
               <img class="piece-image primary" ng-hide="row.toggles.1.hidePrimaryImg" src="{{row.1.primary_image}}"/>
@@ -77,7 +77,7 @@
             </div>
 
           </div>
-          <div class="more-images" ng-click="row.toggles.1.notFlippable || portfolio.classToggle(this, $index, 'transform', true, 1)"><div class="more-icon"></div><span class="more-text">more from this piece</span></div>
+          <div class="more-images" ng-click="portfolio.seeMore(this, $index, 1)" ng-class="{'fade':portfolio.show_more_active && row.toggles.1.notFlippable}"><div class="more-icon"></div><span class="more-text">more from this piece</span></div>
           <div class="less-images"><div class="less-icon"></div><span class="less-text">close piece</span></div>
           <div class="flip-help" ng-class="!this.helpToggle ? 'hide' : ''"><img src="images/info.png" /></div>
         </div>
@@ -85,7 +85,7 @@
         <!-- right piece -->
 
         <div class="container right">
-          <div class="flip-card" ng-click="row.toggles.2.notFlippable || portfolio.classToggle(this, $index, 'transform', false, 2)" ng-class="{'transform':row.toggles.2.transform, 'back-active':row.toggles.2.backActive}">
+          <div class="flip-card" ng-click="row.toggles.2.notFlippable || portfolio.flipToggle(this, $index, false, 2)" ng-class="{'transform':row.toggles.2.transform, 'fade':row.toggles.2.fade, 'not-flippable':row.toggles.2.notFlippable}">
 
             <div class="front face">
               <img class="piece-image primary" ng-hide="row.toggles.2.hidePrimaryImg" src="{{row.2.primary_image}}"/>
@@ -107,7 +107,7 @@
             </div>
 
           </div>
-          <div class="more-images" ng-click="row.toggles.2.notFlippable || portfolio.classToggle(this, $index, 'transform', true, 2)"><div class="more-icon"></div><span class="more-text">more from this piece</span></div>
+          <div class="more-images" ng-click="portfolio.seeMore(this, $index, 2)" ng-class="{'fade':portfolio.show_more_active && row.toggles.2.notFlippable}"><div class="more-icon"></div><span class="more-text">more from this piece</span></div>
           <div class="less-images"><div class="less-icon"></div><span class="less-text">close piece</span></div>
           <div class="flip-help" ng-class="!this.helpToggle ? 'hide' : ''"><img src="images/info.png" /></div>
         </div>

@@ -3,13 +3,21 @@
   // Set number of pieces per row. Choose between 3 and 2.
   config.pieces_per_row = 3;
 
+  // Global variables that need to be available for controllers and stuff
+  config.pieces_count = null;
+  config.row_count = null;
+  // Zero indexed global variables
+  config.pieces_per_row_zero = config.pieces_per_row - 1;
+  config.pieces_count_zero = null;
+  config.row_count_zero = null;
+
   angular.module('portfolio')
 
   .factory('rowsFactory', function($http, $q) {
     delete $http.defaults.headers.common['X-Requested-With'];
 
     var target = 'http://www.benteegarden.com/api/megan.jsonp?callback=JSON_CALLBACK';
-    var piecesCount;
+    // var piecesCount;
     var pieceToggles = [];
     var secondaryImages = {};
     // Create rows object to contain pieces objects
@@ -25,6 +33,8 @@
       }).success(function(data) {
         pieces = data.portfolio;
         piecesCount = pieces.length;
+        config.pieces_count = piecesCount;
+        config.pieces_count_zero = piecesCount - 1;
         // var primaryImages = {};
 
         // @todo preload images
@@ -40,6 +50,7 @@
             notFlippable: false,
             frontSwapped: false,
             backSwapped: false,
+            fade: false,
             hidePrimaryImg: false,
             hideDescription: false,
             hideBackNbrImg_0: true, //@todo make this not so hacky, no piece will actually use all these properties
@@ -162,6 +173,8 @@
             piecesCount = piecesCount - 3;
           }
         }
+        config.row_count = rowCount;
+        config.row_count_zero = rowCount - 1;
 
 
         console.log(rows, 'rows');
