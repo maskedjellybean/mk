@@ -35,17 +35,19 @@
           // Create CSS class toggles object
           pieceToggles[p] = {
             transform: false,
-            backActive: false,
+            backActive: false, // @todo, don't think we need backActive anymore
             noFlipHelp: false,
             notFlippable: false,
             frontSwapped: false,
             backSwapped: false,
             hidePrimaryImg: false,
             hideDescription: false,
-            hideBackNbrImg1: true,
-            hideBackNbrImg2: true,
-            hideFrontNbrImg1: true,
-            hideFrontNbrImg2: true,
+            hideBackNbrImg_0: true, //@todo make this not so hacky, no piece will actually use all these properties
+            hideBackNbrImg_1: true,
+            hideBackNbrImg_2: true,
+            hideFrontNbrImg_0: true,
+            hideFrontNbrImg_1: true,
+            hideFrontNbrImg_2: true,
           };
 
           // Create new image arrays with the current piece number appended

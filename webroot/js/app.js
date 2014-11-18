@@ -2,7 +2,7 @@
 
   angular.module('portfolio')
 
-  .controller('PortfolioController', ['$scope','rowsFactory', function ($scope, rowsFactory) {
+  .controller('PortfolioController', ['$scope', '$timeout', 'rowsFactory', function ($scope, $timeout, rowsFactory) {
 
     $scope.rows = {};
     $scope.toggles = {};
@@ -21,35 +21,77 @@
     this.classToggle = function($scope, repeatScope, propertyName, targetOther, originPiece) {
       var toggles = $scope.rows["row_" + repeatScope]['toggles'];
 
-      // If asked to transform/flip piece
-      if(propertyName === 'transform') {
-        // If target piece to transform is not this piece
-        if(targetOther === true) {
+      // Transform/flip classes adding/removing
+
+      if (propertyName === 'transform') {
+        // If target piece to transform is not this piece, turn other pieces over and display images
+        if (targetOther === true) {
+
+          // zero index pieces per row
+          var piecesPerRow = config.pieces_per_row - 1;
+
+          for (var p = 0; p <= piecesPerRow; p++) {
+            // Only affect other pieces in the row
+            if (p !== originPiece) {
+
+              // If piece is face down
+              if (toggles[p]['transform'] === true) {
+
+                // If back is active, and Description is visible
+                if (!(toggles[p]['hideDescription'])) {
+                  // Hide Primary image
+                  toggles[p]['frontSwapped'] = true;
+                  toggles[p]['notFlippable'] = true;
+                  toggles[p]['backActive'] = false;
+                  toggles[p]['hidePrimaryImg'] = true;
+                  // Show neighbor image instead
+                  toggles[p]['hideFrontNbrImg' + '_' + originPiece.toString()] = false;
+                  toggles[p]['transform'] = false;
+                }
+
+                // If back is active and Description is hidden
+                if (toggles[p]['hideDescription']) {
+                  // Return Description and hide neighboring images
+                  toggles[p]['transform'] = false;
+                  toggles[p]['notFlippable'] = false;
+                  toggles[p]['backActive'] = false;
+                  loopTimeoutUp(p, toggles, originPiece);
+                }
+              }
+
+              // If piece is face up
+              else {
+                // If front is active and Primary image is visible
+                if (!(toggles[p]['frontSwapped'])) {
+                  toggles[p]['hideDescription'] = true;
+                  // Show neighbor image on back face
+                  toggles[p]['hideBackNbrImg' + '_' + originPiece.toString()] = false;
+                  toggles[p]['backActive'] = true;
+                  toggles[p]['notFlippable'] = true;
+                  toggles[p]['transform'] = true;
+                }
+
+                // If front is active but Primary image is hidden
+                else if (toggles[p]['frontSwapped']) {
+                  // Return Primary image and hide neighboring images
+                  toggles[p]['frontSwapped'] = false;
+                  // Transform and then swap images after card is done flipping
+                  toggles[p]['transform'] = true;
+                  toggles[p]['notFlippable'] = false;
+                  toggles[p]['backActive'] = true;
+                  loopTimeoutDown(p, toggles, originPiece);
+                }
 
 
-          // Somehow loop through config and pick out originpiece number, create array
-
-          // loop through new array and set each piece individually
-          // Check if already transformed
-          if(toggles[targetPiece]['transform'] === true) {
-            // Check if back is active
-            if (toggles[targetPiece]['backActive'] === true) {
-              // Swap front image
-              toggles[targetPiece]['frontSwapped'] = true;
-              toggles[targetPiece]['notFlippable'] = true;
-              toggles[targetPiece]['backActive'] = false;
+                // toggles[p]['backActive'] = true;
+                // // toggles[p]['']
+                // toggles[p]['transform'] = true;
+              }
             }
-          }
-
-          // If piece is not already transformed
-          else {
-            toggles[targetPiece]['backActive'] = true;
-            // toggles[targetPiece]['']
-            toggles[targetPiece]['transform'] = true;
           }
         }
 
-        // If target piece to transform is self
+        // If target piece is self
 
         // We can assume that primary image/description is still intact because piece won't be clickable
         // while altered by neighboring pieces
@@ -74,16 +116,34 @@
           toggles[targetPiece][propertyName] = true;
         }
       }
+
+      // console.log($scope.rows, 'toggles result');
+    };
+
+    loopTimeoutDown = function(p, toggles, originPiece) {
+      $timeout(function() {
+        // Hide neighbor image, show Primary image
+        toggles[p]['hideFrontNbrImg' + '_' + originPiece.toString()] = true;
+        toggles[p]['hidePrimaryImg'] = false;
+      }, 500);
+    };
+
+    loopTimeoutUp = function(p, toggles, originPiece) {
+      $timeout(function() {
+        // Hide neighbor image, show Description
+        toggles[p]['hideBackNbrImg' + '_' + originPiece.toString()] = true;
+        toggles[p]['hideDescription'] = false;
+      }, 500);
     };
 
     // Hover methods
-    this.hoverIn = function(repeatScope) {
-      repeatScope.hoverStatus = true;
-    };
+    // this.hoverIn = function(repeatScope) {
+    //   repeatScope.hoverStatus = true;
+    // };
 
-    this.hoverOut = function(repeatScope) {
-      repeatScope.hoverStatus = false;
-    };
+    // this.hoverOut = function(repeatScope) {
+    //   repeatScope.hoverStatus = false;
+    // };
 
   }]);
 
