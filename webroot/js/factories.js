@@ -1,5 +1,8 @@
 (function () {
 
+  // Set number of pieces per row. Choose between 3 and 2.
+  config.pieces_per_row = 3;
+
   angular.module('portfolio')
 
   .factory('rowsFactory', function($http, $q) {
@@ -7,6 +10,7 @@
 
     var target = 'http://www.benteegarden.com/api/megan.jsonp?callback=JSON_CALLBACK';
     var piecesCount;
+    var pieceToggles = [];
     var secondaryImages = {};
     // Create rows object to contain pieces objects
     var rows = {};
@@ -27,6 +31,22 @@
 
         // Loop through all pieces
         for (var p = 0; p < piecesCount; p++) {
+
+          // Create CSS class toggles object
+          pieceToggles[p] = {
+            transform: false,
+            backActive: false,
+            noFlipHelp: false,
+            notFlippable: false,
+            frontSwapped: false,
+            backSwapped: false,
+            hidePrimaryImg: false,
+            hideDescription: false,
+            hideBackNbrImg1: true,
+            hideBackNbrImg2: true,
+            hideFrontNbrImg1: true,
+            hideFrontNbrImg2: true,
+          };
 
           // Create new image arrays with the current piece number appended
           secondaryImages["piece_" + [p]] = [];
@@ -59,7 +79,7 @@
         for (p = 0; p < piecesCount; p++) {
 
           if (config.pieces_per_row === 3) {
-            var mod = p % 4;
+            var mod = p % 3;
             // Create empty neighbor_images array
             pieces[p].neighbor_images = [];
 
@@ -72,13 +92,18 @@
 
               neighbor1 = p + 1;
               neighbor1 = "piece_" + neighbor1.toString();
-              neighbor1 = secondaryImages[neighbor1][0];
-              pieces[p].neighbor_images.center = neighbor1;
+              // Check if the neighbor exists, in case correct number of pieces has not been added
+              if (typeof secondaryImages[neighbor1] != 'undefined') {
+                neighbor1 = secondaryImages[neighbor1][0];
+                pieces[p].neighbor_images.center = neighbor1;
+              }
 
               neighbor2 = p + 2;
               neighbor2 = "piece_" + neighbor2.toString();
-              neighbor2 = secondaryImages[neighbor2][0];
-              pieces[p].neighbor_images.right = neighbor2;
+              if (typeof secondaryImages[neighbor2] != 'undefined') {
+                neighbor2 = secondaryImages[neighbor2][0];
+                pieces[p].neighbor_images.right = neighbor2;
+              }
             }
             // If center
             else if (mod === 1) {
@@ -86,13 +111,17 @@
 
               neighbor1 = p - 1;
               neighbor1 = "piece_" + neighbor1.toString();
-              neighbor1 = secondaryImages[neighbor1][0];
-              pieces[p].neighbor_images.left = neighbor1;
+              if (typeof secondaryImages[neighbor1] != 'undefined') {
+                neighbor1 = secondaryImages[neighbor1][0];
+                pieces[p].neighbor_images.left = neighbor1;
+              }
 
               neighbor2 = p + 1;
               neighbor2 = "piece_" + neighbor2.toString();
-              neighbor2 = secondaryImages[neighbor2][1];
-              pieces[p].neighbor_images.right = neighbor2;
+              if (typeof secondaryImages[neighbor2] != 'undefined') {
+                neighbor2 = secondaryImages[neighbor2][1];
+                pieces[p].neighbor_images.right = neighbor2;
+              }
             }
             // If right
             else if (mod === 2) {
@@ -100,24 +129,41 @@
 
               neighbor1 = p - 1;
               neighbor1 = "piece_" + neighbor1.toString();
-              neighbor1 = secondaryImages[neighbor1][1];
-              pieces[p].neighbor_images.center = neighbor1;
+              if (typeof secondaryImages[neighbor1] != 'undefined') {
+                neighbor1 = secondaryImages[neighbor1][1];
+                pieces[p].neighbor_images.center = neighbor1;
+              }
 
               neighbor2 = p - 2;
               neighbor2 = "piece_" + neighbor2.toString();
-              neighbor2 = secondaryImages[neighbor2][1];
-              pieces[p].neighbor_images.left = neighbor2;
+              if (typeof secondaryImages[neighbor2] != 'undefined') {
+                neighbor2 = secondaryImages[neighbor2][1];
+                pieces[p].neighbor_images.left = neighbor2;
+              }
             }
           }
         }
-        for (p = 0; p < piecesCount; p++) {
+
+        // Add pieces to rows
+        // Create CSS toggles object
+        var rowCount = 0;
+        // var toggles = {};
+        for (p = 0; p <= piecesCount; p++) {
+
           if (config.pieces_per_row === 3) {
-            if (p % 4 === 0) {
-              rows["row_" + p] = pieces.splice(0,3);
-            }
+            // Rows object
+            rows["row_" + rowCount] = pieces.splice(0,3);
+            // CSS class toggles object
+            rows["row_" + rowCount].toggles = {};
+            rows["row_" + rowCount].toggles = pieceToggles.splice(0,3);
+            rowCount++;
+            piecesCount = piecesCount - 3;
           }
         }
+
+
         console.log(rows, 'rows');
+        // console.log(toggles, 'toggles');
         deferred.resolve(rows);
       }).error(function() {
         // @todo Should there be some kind of error message?

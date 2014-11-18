@@ -24,12 +24,12 @@
         <!-- left piece -->
 
         <div class="container left">
-          <div class="flip-card" ng-click="portfolio.classToggle(this, 'transform', 'left')" ng-class="this.toggles.left.transform ? 'transform back-active no-flip-help' : ''" ng-mouseenter="this.helpToggle = true" ng-mouseleave="this.helpToggle = false">
+          <div class="flip-card" ng-click="portfolio.classToggle(this, $index, 'transform', false, 0)" ng-class="{'transform':row.toggles.0.transform, 'back-active':row.toggles.0.backActive}" ng-mouseenter="this.helpToggle = true" ng-mouseleave="this.helpToggle = false">
 
             <div class="front face">
-              <img class="piece-image primary" ng-hide="this.toggles.left.hidePrimaryImg" src="{{row.0.primary_image}}"/>
-              <img class="piece-image nbr-center" ng-hide="this.toggles.left.hideFrontNbrImg1" src="{{row.0.neighbor_images.center}}" />
-              <img class="piece-image nbr-right" ng-hide="this.toggles.left.hideFrontNbrImg2" src="{{row.0.neighbor_images.right}}"/>
+              <img class="piece-image primary" ng-hide="row.toggles.0.hidePrimaryImg" src="{{row.0.primary_image}}"/>
+              <img class="piece-image nbr-center" ng-hide="row.toggles.0.hideFrontNbrImg1" src="{{row.0.neighbor_images.center}}" />
+              <img class="piece-image nbr-right" ng-hide="row.toggles.0.hideFrontNbrImg2" src="{{row.0.neighbor_images.right}}"/>
             </div>
 
             <div class="back face center">
@@ -44,7 +44,7 @@
             </div>
 
           </div>
-          <div class="more-images"><div class="more-icon"></div><span class="more-text">more from this piece</span></div>
+          <div class="more-images" ng-click="portfolio.classToggle(this, $index, 'transform', true, 0)"><div class="more-icon"></div><span class="more-text">more from this piece</span></div>
           <div class="less-images"><div class="less-icon"></div><span class="less-text">close piece</span></div>
           <!-- <div class="flip-help" ng-class="!this.helpToggle ? 'hide' : ''"><img src="images/info.png" /></div> -->
         </div>
@@ -52,12 +52,12 @@
         <!-- center piece -->
 
         <div class="container center">
-          <div class="flip-card" ng-click="portfolio.classToggle(this, 'transform', 'center')" ng-class="this.toggles.center.transform ? 'transform back-active no-flip-help' : ''" ng-mouseenter="this.helpToggle = true" ng-mouseleave="this.helpToggle = false">
+          <div class="flip-card" ng-click="portfolio.classToggle(this, $index, 'transform', 1)" ng-class="row.toggles.1.transform ? 'transform back-active no-flip-help' : ''" ng-mouseenter="this.helpToggle = true" ng-mouseleave="this.helpToggle = false">
 
             <div class="front face">
-              <img class="piece-image primary" ng-hide="this.toggles.center.hidePrimaryImg" src="{{row.1.primary_image}}"/>
-              <img class="piece-image nbr-left" ng-hide="this.toggles.center.hideFrontNbrImg1" src="{{row.1.neighbor_images.left}}"/>
-              <img class="piece-image nbr-right" ng-hide="this.toggles.center.hideFrontNbrImg2"src="{{row.1.neighbor_images.right}}"/>
+              <img class="piece-image primary" ng-hide="row.toggles.1.hidePrimaryImg" src="{{row.1.primary_image}}"/>
+              <img class="piece-image nbr-left" ng-hide="row.toggles.1.hideFrontNbrImg1" src="{{row.1.neighbor_images.left}}"/>
+              <img class="piece-image nbr-right" ng-hide="row.toggles.1.hideFrontNbrImg2"src="{{row.1.neighbor_images.right}}"/>
             </div>
 
             <div class="back face center">
@@ -80,12 +80,12 @@
         <!-- right piece -->
 
         <div class="container right">
-          <div class="flip-card" ng-click="portfolio.classToggle(this, 'transform', 'right')" ng-class="this.toggles.right.transform ? 'transform back-active no-flip-help' : ''" ng-mouseenter="this.helpToggle = true" ng-mouseleave="this.helpToggle = false">
+          <div class="flip-card" ng-click="portfolio.classToggle(this, $index, 'transform', 2)" ng-class="row.toggles.2.transform ? 'transform back-active no-flip-help' : ''" ng-mouseenter="this.helpToggle = true" ng-mouseleave="this.helpToggle = false">
 
             <div class="front face">
-              <img class="piece-image primary" ng-hide="this.toggles.right.hidePrimaryImg" src="{{row.2.primary_image}}"/>
-              <img class="piece-image nbr-left" ng-hide="this.toggles.right.hideFrontNbrImg1" src="{{row.2.neighbor_images.left}}"/>
-              <img class="piece-image nbr-center" ng-hide="this.toggles.right.hideFrontNbrImg2"src="{{row.2.neighbor_images.center}}"/>
+              <img class="piece-image primary" ng-hide="row.toggles.2.hidePrimaryImg" src="{{row.2.primary_image}}"/>
+              <img class="piece-image nbr-left" ng-hide="row.toggles.2.hideFrontNbrImg1" src="{{row.2.neighbor_images.left}}"/>
+              <img class="piece-image nbr-center" ng-hide="row.toggles.2.hideFrontNbrImg2"src="{{row.2.neighbor_images.center}}"/>
             </div>
 
             <div class="back face center">

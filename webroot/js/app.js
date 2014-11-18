@@ -5,6 +5,7 @@
   .controller('PortfolioController', ['$scope','rowsFactory', function ($scope, rowsFactory) {
 
     $scope.rows = {};
+    $scope.toggles = {};
 
     $scope.assignRows = function() {
       rowsFactory.createRows()
@@ -16,53 +17,62 @@
 
     $scope.assignRows();
 
-    // This object controls the CSS class states for each 'piece'.
-    $scope.toggles = {
-      left: {
-        transform: false,
-        backActive: false,
-        noFlipHelp: false,
-        hidePrimaryImg: false,
-        hideDescription: false, // Determine whether to show or hide the text description
-        hideBackNbrImg1: true,
-        hideBackNbrImg2: true,
-        hideFrontNbrImg1: true,
-        hideFrontNbrImg2: true,
-      },
-      center: {
-        transform: false,
-        backActive: false,
-        noFlipHelp: false,
-        hidePrimaryImg: false,
-        hideDescription: false, // Determine whether to show or hide the text description
-        hideBackNbrImg1: true,
-        hideBackNbrImg2: true,
-        hideFrontNbrImg1: true,
-        hideFrontNbrImg2: true,
-      },
-      right: {
-        transform: false,
-        backActive: false,
-        noFlipHelp: false,
-        hidePrimaryImg: false,
-        hideDescription: false, // Determine whether to show or hide the text description
-        hideBackNbrImg1: true,
-        hideBackNbrImg2: true,
-        hideFrontNbrImg1: true,
-        hideFrontNbrImg2: true,
-      },
-    };
+    // Method for toggling CSS classes
+    this.classToggle = function($scope, repeatScope, propertyName, targetOther, originPiece) {
+      var toggles = $scope.rows["row_" + repeatScope]['toggles'];
 
-    // Method for toggling classes
-    this.classToggle = function($scope, propertyName, piecePosition) {
+      // If asked to transform/flip piece
+      if(propertyName === 'transform') {
+        // If target piece to transform is not this piece
+        if(targetOther === true) {
 
-      var toggles = $scope.toggles;
 
-      if (toggles[piecePosition][propertyName] === true) {
-        toggles[piecePosition][propertyName] = false;
+          // Somehow loop through config and pick out originpiece number, create array
+
+          // loop through new array and set each piece individually
+          // Check if already transformed
+          if(toggles[targetPiece]['transform'] === true) {
+            // Check if back is active
+            if (toggles[targetPiece]['backActive'] === true) {
+              // Swap front image
+              toggles[targetPiece]['frontSwapped'] = true;
+              toggles[targetPiece]['notFlippable'] = true;
+              toggles[targetPiece]['backActive'] = false;
+            }
+          }
+
+          // If piece is not already transformed
+          else {
+            toggles[targetPiece]['backActive'] = true;
+            // toggles[targetPiece]['']
+            toggles[targetPiece]['transform'] = true;
+          }
+        }
+
+        // If target piece to transform is self
+
+        // We can assume that primary image/description is still intact because piece won't be clickable
+        // while altered by neighboring pieces
+        else {
+          if (toggles[originPiece]['transform'] === true) {
+            toggles[originPiece]['transform'] = false;
+            toggles[originPiece]['backActive'] = false;
+          }
+          else {
+            toggles[originPiece]['transform'] = true;
+            toggles[originPiece]['backActive'] = true;
+          }
+        }
       }
+
+      // If some other class
       else {
-        toggles[piecePosition][propertyName] = true;
+        if (toggles[targetPiece][propertyName] === true) {
+          toggles[targetPiece][propertyName] = false;
+        }
+        else {
+          toggles[targetPiece][propertyName] = true;
+        }
       }
     };
 
@@ -75,7 +85,7 @@
       repeatScope.hoverStatus = false;
     };
 
-  }])
+  }]);
 
   // .directive('imagePlacer', function(defaultImage, imagePosition, repeatIndex, replaceImage) {
   //   // console.log($index);
