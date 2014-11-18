@@ -157,42 +157,36 @@
           }
         }
 
-        // Add pieces to rows
-        // Create CSS toggles object
+        // Add pieces to rows object
+        // Add toggles object
         var rowCount = 0;
-        // var toggles = {};
         for (p = 0; p <= piecesCount; p++) {
-
           if (config.pieces_per_row === 3) {
-            // Rows object
-            rows["row_" + rowCount] = pieces.splice(0,3);
-            // CSS class toggles object
-            rows["row_" + rowCount].toggles = {};
-            rows["row_" + rowCount].toggles = pieceToggles.splice(0,3);
-            rowCount++;
-            piecesCount = piecesCount - 3;
+            // Add pieces to rows object
+            // Only add pieces in multiples of 3
+            var rowTemp = pieces.splice(0,3);
+            if (rowTemp.length === config.pieces_per_row) {
+              rows["row_" + rowCount] = rowTemp;
+              // CSS class toggles object
+              rows["row_" + rowCount].toggles = {};
+              rows["row_" + rowCount].toggles = pieceToggles.splice(0,3);
+              rowCount++;
+              piecesCount = piecesCount - 3;
+            }
           }
         }
         config.row_count = rowCount;
         config.row_count_zero = rowCount - 1;
 
 
-        console.log(rows, 'rows');
-        // console.log(toggles, 'toggles');
+        // console.log(rows, 'rows');
+
         deferred.resolve(rows);
       }).error(function() {
         // @todo Should there be some kind of error message?
         deferred.reject();
       });
       return deferred.promise;
-
-
-
-      // return rows;
-
-      // console.log(secondaryImages, 'secondary images');
-      // console.log(primaryImages, 'primary images');
-      // console.log(pieces, 'pieces');
     };
     return service;
   });

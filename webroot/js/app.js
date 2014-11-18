@@ -5,6 +5,7 @@
   .controller('PortfolioController', ['$scope', '$timeout', 'rowsFactory', function ($scope, $timeout, rowsFactory) {
 
     // Global variables/objects
+    // Contains info about all portfolio pieces
     $scope.rows = {};
     // Variable is set to true whenever any piece is expanded (show more is clicked)
     this.show_more_active = false;
@@ -39,6 +40,7 @@
       }
     };
 
+    // See More button functionality. Fades non-origin rows.
     this.seeMore = function($scope, repeatScope, originPiece) {
       if ($scope.rows["row_" + repeatScope.toString()]['toggles'][originPiece]['notFlippable'] === false) {
         this.preventFlip(originPiece, repeatScope);
@@ -47,7 +49,6 @@
         // Set global show more active variable to control fade for more links in origin row
         if (this.show_more_active) {
           this.show_more_active = false;
-          console.log('wtf');
         }
         else {
           this.show_more_active = true;
@@ -123,7 +124,6 @@
           }
         }
       }
-
       // If target piece is self
 
       // We can assume that primary image/description is still intact because piece won't be clickable
@@ -138,8 +138,6 @@
           // toggles[originPiece]['backActive'] = true;
         }
       }
-
-      // console.log($scope.rows, 'toggles result');
     };
 
     this.classToggle = function($scope, repeatScope, propertyName, targetOther, originPiece) {
