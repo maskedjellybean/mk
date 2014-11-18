@@ -25,7 +25,7 @@
         <!-- ng-mouseenter="this.helpToggle = true" ng-mouseleave="this.helpToggle = false" -->
 
         <div class="container left">
-          <div class="flip-card" ng-click="portfolio.classToggle(this, $index, 'transform', false, 0)" ng-class="{'transform':row.toggles.0.transform, 'back-active':row.toggles.0.backActive}">
+          <div class="flip-card" ng-click="row.toggles.0.notFlippable || portfolio.classToggle(this, $index, 'transform', false, 0)" ng-class="{'transform':row.toggles.0.transform, 'back-active':row.toggles.0.backActive}">
 
             <div class="front face">
               <img class="piece-image primary" ng-hide="row.toggles.0.hidePrimaryImg" src="{{row.0.primary_image}}"/>
@@ -55,7 +55,7 @@
         <!-- center piece -->
 
         <div class="container center">
-          <div class="flip-card" ng-click="portfolio.classToggle(this, $index, 'transform', false, 1)" ng-class="{'transform':row.toggles.1.transform, 'back-active':row.toggles.1.backActive}">
+          <div class="flip-card" ng-click="row.toggles.1.notFlippable || portfolio.classToggle(this, $index, 'transform', false, 1)" ng-class="{'transform':row.toggles.1.transform, 'back-active':row.toggles.1.backActive}">
 
             <div class="front face">
               <img class="piece-image primary" ng-hide="row.toggles.1.hidePrimaryImg" src="{{row.1.primary_image}}"/>
@@ -85,7 +85,7 @@
         <!-- right piece -->
 
         <div class="container right">
-          <div class="flip-card" ng-click="portfolio.classToggle(this, $index, 'transform', false, 2)" ng-class="{'transform':row.toggles.2.transform, 'back-active':row.toggles.2.backActive}">
+          <div class="flip-card" ng-click="row.toggles.2.notFlippable || portfolio.classToggle(this, $index, 'transform', false, 2)" ng-class="{'transform':row.toggles.2.transform, 'back-active':row.toggles.2.backActive}">
 
             <div class="front face">
               <img class="piece-image primary" ng-hide="row.toggles.2.hidePrimaryImg" src="{{row.2.primary_image}}"/>
