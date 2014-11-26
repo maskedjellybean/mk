@@ -50,6 +50,7 @@
             notFlippable: false,
             frontSwapped: false,
             backSwapped: false,
+            showMoreActive: false,
             fade: false,
             hidePrimaryImg: false,
             hideDescription: false,

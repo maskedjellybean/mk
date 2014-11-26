@@ -214,20 +214,17 @@ ul#header-links li a:hover {
   float: left;
 }
 
-.less-images {
-  display: none;
+.less-button, .more-button {
+  margin-top: 20px;
   cursor: pointer;
-  margin-top: 4%;
   transition: all .5s linear;
   -moz-transition: all .5s linear;
   -webkit-transition: all .5s linear;
-  width: 40%;
   float: left;
 }
 
-.more-images {
+.show-more {
   cursor: pointer;
-  margin-top: 4%;
   transition: all .5s linear;
   -moz-transition: all .5s linear;
   -webkit-transition: all .5s linear;
@@ -256,7 +253,6 @@ ul#header-links li a:hover {
 }
 
 .more-text, .less-text {
-  float: left;
   font-size: 1.1em;
   text-shadow: 1px 1px white;
   color: #7A7A7A;

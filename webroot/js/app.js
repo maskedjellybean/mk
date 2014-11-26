@@ -42,6 +42,8 @@
 
     // See More button functionality. Fades non-origin rows.
     this.seeMore = function($scope, repeatScope, originPiece) {
+      var piece = $scope.rows["row_" + repeatScope.toString()]['toggles'][originPiece];
+
       if ($scope.rows["row_" + repeatScope.toString()]['toggles'][originPiece]['notFlippable'] === false) {
         this.preventFlip(originPiece, repeatScope);
         this.flipToggle($scope, repeatScope, true, originPiece);
@@ -49,9 +51,11 @@
         // Set global show more active variable to control fade for more links in origin row
         if (this.show_more_active) {
           this.show_more_active = false;
+          piece['showMoreActive'] = false;
         }
         else {
           this.show_more_active = true;
+          piece['showMoreActive'] = true;
         }
       }
     };

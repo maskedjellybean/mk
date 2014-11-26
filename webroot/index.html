@@ -47,8 +47,14 @@
             </div>
 
           </div>
-          <div class="more-images" ng-click="portfolio.seeMore(this, $index, 0)" ng-class="{'fade':portfolio.show_more_active && row.toggles.0.notFlippable}"><div class="more-icon"></div><span class="more-text">more from this piece</span></div>
-          <div class="less-images"><div class="less-icon"></div><span class="less-text">close piece</span></div>
+          <div class="show-more" ng-click="portfolio.seeMore(this, $index, 0)" ng-class="{'fade':portfolio.show_more_active && row.toggles.0.notFlippable}">
+            <div class="more-button" ng-hide="row.toggles.0.showMoreActive">
+              <div class="more-icon"></div><span class="more-text">more from this piece</span>
+            </div>
+            <div class="less-button" ng-show="row.toggles.0.showMoreActive">
+              <div class="less-icon"></div><span class="less-text">close piece</span>
+            </div>
+          </div>
           <!-- <div class="flip-help" ng-class="!this.helpToggle ? 'hide' : ''"><img src="images/info.png" /></div> -->
         </div>
 
@@ -77,9 +83,14 @@
             </div>
 
           </div>
-          <div class="more-images" ng-click="portfolio.seeMore(this, $index, 1)" ng-class="{'fade':portfolio.show_more_active && row.toggles.1.notFlippable}"><div class="more-icon"></div><span class="more-text">more from this piece</span></div>
-          <div class="less-images"><div class="less-icon"></div><span class="less-text">close piece</span></div>
-          <div class="flip-help" ng-class="!this.helpToggle ? 'hide' : ''"><img src="images/info.png" /></div>
+          <div class="show-more" ng-click="portfolio.seeMore(this, $index, 1)" ng-class="{'fade':portfolio.show_more_active && row.toggles.1.notFlippable}">
+            <div class="more-button" ng-hide="row.toggles.1.showMoreActive">
+              <div class="more-icon"></div><span class="more-text">more from this piece</span>
+            </div>
+            <div class="less-button" ng-show="row.toggles.1.showMoreActive">
+              <div class="less-icon"></div><span class="less-text">close piece</span>
+            </div>
+          </div>
         </div>
 
         <!-- right piece -->
@@ -107,9 +118,14 @@
             </div>
 
           </div>
-          <div class="more-images" ng-click="portfolio.seeMore(this, $index, 2)" ng-class="{'fade':portfolio.show_more_active && row.toggles.2.notFlippable}"><div class="more-icon"></div><span class="more-text">more from this piece</span></div>
-          <div class="less-images"><div class="less-icon"></div><span class="less-text">close piece</span></div>
-          <div class="flip-help" ng-class="!this.helpToggle ? 'hide' : ''"><img src="images/info.png" /></div>
+          <div class="show-more" ng-click="portfolio.seeMore(this, $index, 2)" ng-class="{'fade':portfolio.show_more_active && row.toggles.2.notFlippable}">
+            <div class="more-button" ng-hide="row.toggles.2.showMoreActive">
+              <div class="more-icon"></div><span class="more-text">more from this piece</span>
+            </div>
+            <div class="less-button" ng-show="row.toggles.2.showMoreActive">
+              <div class="less-icon"></div><span class="less-text">close piece</span>
+            </div>
+          </div>
         </div>
       </div>
 
