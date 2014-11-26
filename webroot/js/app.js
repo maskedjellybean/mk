@@ -27,13 +27,14 @@
         if (r !== originRow) {
           var piecesInRow = $scope.rows["row_" + r.toString()]['toggles'].length - 1;
           for (var p = 0; p <= piecesInRow; p++) {
-            if ($scope.rows["row_" + r.toString()]['toggles'][p]['notFlippable'] === false) {
-              $scope.rows["row_" + r.toString()]['toggles'][p]['notFlippable'] = true;
-              $scope.rows["row_" + r.toString()]['toggles'][p]['fade'] = true;
+            var toggles = $scope.rows["row_" + r.toString()]['toggles'];
+            if (toggles[p]['notFlippable'] === false) {
+              toggles[p]['notFlippable'] = true;
+              toggles[p]['fade'] = true;
             }
             else {
-              $scope.rows["row_" + r.toString()]['toggles'][p]['notFlippable'] = false;
-              $scope.rows["row_" + r.toString()]['toggles'][p]['fade'] = false;
+              toggles[p]['notFlippable'] = false;
+              toggles[p]['fade'] = false;
             }
           }
         }
