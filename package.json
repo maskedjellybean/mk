@@ -1,11 +1,13 @@
 {
-    "name" : "MK",
-    "title" : "Code Compressor",
-    "version" : "1.0.0",
-    "devDependencies": {
-        "grunt": "0.4.1",
-        "grunt-contrib-cssmin" : "0.6.1",
-        "grunt-contrib-uglify" : "0.2.0",
-        "grunt-smushit" : "1.3.0"
-    }
+  "name" : "MK",
+  "title" : "Code Compressor",
+  "version" : "1.0.0",
+  "description" : "Installs grunt",
+  "devDependencies": {
+    "grunt": "0.4.1",
+    "grunt-contrib-cssmin" : "0.6.1",
+    "grunt-contrib-uglify" : "0.2.0",
+    "grunt-smushit" : "1.3.0",
+    "grunt-contrib-watch" : "0.6.1"
+  }
 }

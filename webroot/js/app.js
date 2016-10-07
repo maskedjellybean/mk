@@ -1,4 +1,4 @@
-(function () {
+(function() {
 
   angular.module('portfolio')
 
@@ -13,6 +13,7 @@
     $scope.assignRows = function() {
       rowsFactory.createRows()
         .then(function(rows){
+          console.log(rows, 'app rows');
           $scope.rows = rows;
           console.log($scope.rows);
         });

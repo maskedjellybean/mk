@@ -33,7 +33,7 @@ module.exports = function(grunt) {
           ],
           tasks: [
             'cssmin',
-            // 'uglify'
+            'uglify'
           ]
         }
     });
