@@ -1,0 +1,3 @@
+[submodule "webroot/angular-portfolio-app"]
+	path = webroot/angular-portfolio-app
+	url = git@github.com:maskedjellybean/angular-portfolio-app.git
